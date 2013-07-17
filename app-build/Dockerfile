@@ -10,3 +10,5 @@ RUN chmod +x /bin/deploy.sh
 RUN deploy.sh app_setup
 
 EXPOSE 8080
+
+CMD    ["/bin/deploy.sh", "app_run"]
