@@ -6,7 +6,6 @@
 USER_HOME="/home/corn"
 APPDIR="/home/corn/app"
 RUBY_VER="1.9.3-p429"
-INSIDE_PORT="8080"
 
 show() {
   echo -e "\n\e[1;32m>>> $1\e[00m"
@@ -16,7 +15,7 @@ system_setup () {
   show "System setup, packages"
   apt-get update
   apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev
-  
+
   useradd --shell /bin/bash --home-dir $USER_HOME -m -p `openssl passwd strpass` corn
 }
 
