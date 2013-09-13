@@ -11,10 +11,20 @@ show() {
   echo -e "\n\e[1;32m>>> $1\e[00m"
 }
 
+node_install () {
+  show "Installing node.js"
+  git clone git://github.com/ry/node.git /tmp/node
+  cd /tmp/node
+  ./configure
+  make
+  sudo make install
+  cd /tmp && rm -rf /tmp/node
+}
+
 system_setup () {
   show "System setup, packages"
   apt-get update
-  apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev
+  apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev libmysqlclient-dev libpq-dev
 
   show "Creating user"
   useradd --shell /bin/bash --home-dir $USER_HOME -m -p `openssl passwd strpass` corn
@@ -25,6 +35,7 @@ system_setup () {
   echo "github.com,204.232.175.90 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==" >> /home/corn/.ssh/known_hosts
   chown -R corn:corn /home/corn/.ssh
 }
+
 
 rbenv_setup () {
   show "Rbenv setup"
