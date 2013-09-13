@@ -13,7 +13,7 @@ show() {
 
 node_install () {
   show "Installing node.js"
-  git clone git://github.com/ry/node.git /tmp/node
+  git clone git://github.com/ry/node.git /tmp/node --depth 10
   cd /tmp/node
   ./configure
   make
@@ -24,7 +24,7 @@ node_install () {
 system_setup () {
   show "System setup, packages"
   apt-get update
-  apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev libmysqlclient-dev libpq-dev g++ apache2-utils
+  apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev libmysqlclient-dev libpq-dev g++ apache2-utils python-software-properties python
 
   show "Creating user"
   useradd --shell /bin/bash --home-dir $USER_HOME -m -p `openssl passwd strpass` corn
