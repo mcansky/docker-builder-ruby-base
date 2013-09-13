@@ -16,7 +16,10 @@ system_setup () {
   apt-get update
   apt-get install -y git zlib1g-dev sudo curl libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libcurl4-openssl-dev build-essential make libcurl4-openssl-dev
 
+  show "Creating user"
   useradd --shell /bin/bash --home-dir $USER_HOME -m -p `openssl passwd strpass` corn
+  sudo -u corn ssh-keygen -t rsa -C corn_key@container
+  show "Ssh public key :\n`cat /home/corn/.ssh/id_rsa.pub`"
 }
 
 rbenv_setup () {
