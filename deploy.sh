@@ -18,7 +18,7 @@ system_setup () {
 
   show "Creating user"
   useradd --shell /bin/bash --home-dir $USER_HOME -m -p `openssl passwd strpass` corn
-  sudo -u corn ssh-keygen -t rsa -C corn_key@container
+  sudo -u corn ssh-keygen -t rsa -C corn_key@container -f /home/corn/.ssh/id_rsa -q -N ''
   show "Ssh public key :\n`cat /home/corn/.ssh/id_rsa.pub`"
 }
 
